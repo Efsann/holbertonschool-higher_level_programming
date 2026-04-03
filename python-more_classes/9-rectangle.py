@@ -1,36 +1,35 @@
 #!/usr/bin/python3
-"""Defines a class Rectangle."""
+"""
+Bu modul Rectangle (Düzbucaqlı) sinfini təyin edir.
+"""
 
 
 class Rectangle:
-    """Represent a rectangle.
+    """
+    Düzbucaqlını təmsil edən sinif.
 
-    Attributes:
-        number_of_instances (int): The number of Rectangle instances.
-        print_symbol (any): The symbol used for string representation.
+    Atributlar:
+        number_of_instances (int): Mövcud obyektlərin sayı.
+        print_symbol (any): Çap üçün istifadə olunan simvol.
     """
 
     number_of_instances = 0
     print_symbol = "#"
 
     def __init__(self, width=0, height=0):
-        """Initialize a new Rectangle.
-
-        Args:
-            width (int): The width of the new rectangle.
-            height (int): The height of the new rectangle.
-        """
+        """Yeni bir Rectangle yaradır."""
         type(self).number_of_instances += 1
         self.width = width
         self.height = height
 
     @property
     def width(self):
-        """Get/set the width of the rectangle."""
+        """Eni geri qaytarır."""
         return self.__width
 
     @width.setter
     def width(self, value):
+        """Eni təyin edir (validasiya ilə)."""
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if value < 0:
@@ -39,11 +38,12 @@ class Rectangle:
 
     @property
     def height(self):
-        """Get/set the height of the rectangle."""
+        """Hündürlüyü geri qaytarır."""
         return self.__height
 
     @height.setter
     def height(self, value):
+        """Hündürlüyü təyin edir (validasiya ilə)."""
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
         if value < 0:
@@ -51,25 +51,18 @@ class Rectangle:
         self.__height = value
 
     def area(self):
-        """Return the area of the Rectangle."""
-        return (self.__width * self.__height)
+        """Düzbucaqlının sahəsini qaytarır."""
+        return self.__width * self.__height
 
     def perimeter(self):
-        """Return the perimeter of the Rectangle."""
+        """Düzbucaqlının perimetrini qaytarır."""
         if self.__width == 0 or self.__height == 0:
             return 0
-        return ((self.__width * 2) + (self.__height * 2))
+        return (self.__width * 2) + (self.__height * 2)
 
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
-        """Return the Rectangle with the greater area.
-
-        Args:
-            rect_1 (Rectangle): The first Rectangle.
-            rect_2 (Rectangle): The second Rectangle.
-        Raises:
-            TypeError: If either of rect_1 or rect_2 is not a Rectangle.
-        """
+        """İki düzbucaqlıdan sahəsi böyük olanı qaytarır."""
         if not isinstance(rect_1, Rectangle):
             raise TypeError("rect_1 must be an instance of Rectangle")
         if not isinstance(rect_2, Rectangle):
@@ -80,38 +73,22 @@ class Rectangle:
 
     @classmethod
     def square(cls, size=0):
-        """Return a new Rectangle instance with width == height == size.
-
-        Args:
-            size (int): The size of the new rectangle.
-        """
+        """Eni və hündürlüyü bərabər olan yeni bir obyekt (kvadrat) qaytarır."""
         return cls(size, size)
 
     def __str__(self):
-        """Return the printable representation of the Rectangle.
-
-        Represents the rectangle with the print_symbol character.
-        """
+        """Düzbucaqlını print_symbol ilə vizual təsvir edir."""
         if self.__width == 0 or self.__height == 0:
             return ""
-
-        rect = []
-        for i in range(self.__height):
-            [rect.append(str(self.print_symbol)) for j in range(self.__width)]
-            if i != self.__height - 1:
-                rect.append("\n")
-        return ("".join(rect))
+        
+        row = str(self.print_symbol) * self.__width
+        return "\n".join([row for _ in range(self.__height)])
 
     def __repr__(self):
-        """Return a string representation of the rectangle.
-
-        Allows recreating a new instance using eval().
-        """
-        rect = "Rectangle(" + str(self.__width)
-        rect += ", " + str(self.__height) + ")"
-        return (rect)
+        """Obyekti yenidən yaratmaq üçün lazım olan stringi qaytarır."""
+        return "Rectangle({:d}, {:d})".format(self.__width, self.__height)
 
     def __del__(self):
-        """Print a message when an instance of Rectangle is deleted."""
+        """Obyekt silinəndə mesaj çap edir və sayğacı azaldır."""
         type(self).number_of_instances -= 1
         print("Bye rectangle...")
