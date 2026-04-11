@@ -2,25 +2,50 @@
 Testing MyList class
 =============================
 
-Bu fayl `MyList` sinfini test etmək üçündür.
-
-Gəlin sinfi import edək və yaradaq:
+Modulu və sinfi yükləyirik:
     >>> MyList = __import__('1-my_list').MyList
-    >>> my_list = MyList()
 
-Siyahıya elementlər əlavə edək:
-    >>> my_list.append(1)
+Check instantiation (Yaradılmanı yoxlayaq):
+    >>> my_list = MyList()
+    >>> print(my_list)
+    []
+
+Check print_sorted() with empty list (Boş siyahı ilə yoxlayaq):
+    >>> my_list.print_sorted()
+    []
+
+Check print_sorted() with not sorted append (Qarışıq rəqəmlərlə):
     >>> my_list.append(4)
-    >>> my_list.append(2)
+    >>> my_list.append(1)
     >>> my_list.append(3)
     >>> my_list.append(5)
+    >>> my_list.append(2)
     >>> print(my_list)
-    [1, 4, 2, 3, 5]
-
-`print_sorted` funksiyasının düzgün işlədiyini yoxlayaq:
+    [4, 1, 3, 5, 2]
     >>> my_list.print_sorted()
     [1, 2, 3, 4, 5]
 
-Orijinal siyahının dəyişmədiyinə əmin olaq:
+Check print_sorted() returns a new list (Orijinalın dəyişmədiyini yoxlayaq):
     >>> print(my_list)
-    [1, 4, 2, 3, 5]
+    [4, 1, 3, 5, 2]
+
+Check print_sorted() with sorted append (Artan ardıcıllıqla):
+    >>> m2 = MyList()
+    >>> m2.append(1)
+    >>> m2.append(2)
+    >>> m2.append(3)
+    >>> m2.print_sorted()
+    [1, 2, 3]
+
+Check print_sorted() with no sorted append with negative number (Mənfi rəqəmlərlə):
+    >>> m3 = MyList()
+    >>> m3.append(-5)
+    >>> m3.append(10)
+    >>> m3.append(-12)
+    >>> m3.append(0)
+    >>> m3.print_sorted()
+    [-12, -5, 0, 10]
+
+Check inherits from list (list-dən törədiyini yoxlayaq):
+    >>> issubclass(MyList, list)
+    True
