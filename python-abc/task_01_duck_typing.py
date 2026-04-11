@@ -1,59 +1,59 @@
 #!/usr/bin/env python3
 """
-Module defining Shape, Circle, Rectangle and shape_info
+Module for Shape, Circle, Rectangle and shape_info function.
 """
 from abc import ABC, abstractmethod
 import math
 
 
 class Shape(ABC):
-    """Abstract base class Shape"""
+    """Abstract class for a shape."""
 
     @abstractmethod
     def area(self):
-        """Abstract method for area"""
+        """Method to calculate area."""
         pass
 
     @abstractmethod
     def perimeter(self):
-        """Abstract method for perimeter"""
+        """Method to calculate perimeter."""
         pass
 
 
 class Circle(Shape):
-    """Circle class implementation"""
+    """Circle class that inherits from Shape."""
 
     def __init__(self, radius):
-        """Constructor for Circle"""
-        self.radius = radius
+        """Initialize Circle with radius using absolute value."""
+        self.radius = abs(radius)
 
     def area(self):
-        """Returns circle area"""
-        return math.pi * self.radius ** 2
+        """Calculate area of a circle."""
+        return math.pi * (self.radius ** 2)
 
     def perimeter(self):
-        """Returns circle perimeter"""
+        """Calculate perimeter of a circle."""
         return 2 * math.pi * self.radius
 
 
 class Rectangle(Shape):
-    """Rectangle class implementation"""
+    """Rectangle class that inherits from Shape."""
 
     def __init__(self, width, height):
-        """Constructor for Rectangle"""
-        self.width = width
-        self.height = height
+        """Initialize Rectangle with width and height using absolute values."""
+        self.width = abs(width)
+        self.height = abs(height)
 
     def area(self):
-        """Returns rectangle area"""
+        """Calculate area of a rectangle."""
         return self.width * self.height
 
     def perimeter(self):
-        """Returns rectangle perimeter"""
+        """Calculate perimeter of a rectangle."""
         return 2 * (self.width + self.height)
 
 
 def shape_info(shape):
-    """Prints shape area and perimeter using duck typing"""
+    """Function that prints area and perimeter of a shape."""
     print("Area: {}".format(shape.area()))
     print("Perimeter: {}".format(shape.perimeter()))
