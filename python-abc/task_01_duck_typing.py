@@ -1,63 +1,59 @@
 #!/usr/bin/env python3
 """
-Module for Shape abstract class, Circle, Rectangle, and shape_info function.
+Module for Shape, Circle, Rectangle and shape_info function
 """
 from abc import ABC, abstractmethod
 import math
 
 
 class Shape(ABC):
-    """Abstract class representing a geometrical shape."""
+    """Abstract class Shape"""
 
     @abstractmethod
     def area(self):
-        """Calculates the area of the shape."""
+        """Abstract method area"""
         pass
 
     @abstractmethod
     def perimeter(self):
-        """Calculates the perimeter of the shape."""
+        """Abstract method perimeter"""
         pass
 
 
 class Circle(Shape):
-    """Class representing a circle."""
+    """Class Circle that inherits from Shape"""
 
     def __init__(self, radius):
-        """Initializes circle with a radius."""
+        """Initializes Circle with radius"""
         self.radius = radius
 
     def area(self):
-        """Returns the area of the circle."""
+        """Calculates area of circle"""
         return math.pi * (self.radius ** 2)
 
     def perimeter(self):
-        """Returns the perimeter of the circle."""
+        """Calculates perimeter of circle"""
         return 2 * math.pi * self.radius
 
 
 class Rectangle(Shape):
-    """Class representing a rectangle."""
+    """Class Rectangle that inherits from Shape"""
 
     def __init__(self, width, height):
-        """Initializes rectangle with width and height."""
+        """Initializes Rectangle with width and height"""
         self.width = width
         self.height = height
 
     def area(self):
-        """Returns the area of the rectangle."""
+        """Calculates area of rectangle"""
         return self.width * self.height
 
     def perimeter(self):
-        """Returns the perimeter of the rectangle."""
+        """Calculates perimeter of rectangle"""
         return 2 * (self.width + self.height)
 
 
 def shape_info(shape):
-    """
-    Prints the area and perimeter of a shape using duck typing.
-    Args:
-        shape: An object that should have area() and perimeter() methods.
-    """
+    """Prints the area and perimeter of a shape"""
     print("Area: {}".format(shape.area()))
     print("Perimeter: {}".format(shape.perimeter()))
