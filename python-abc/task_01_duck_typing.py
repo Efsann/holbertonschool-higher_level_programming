@@ -7,74 +7,50 @@ import math
 
 
 class Shape(ABC):
-    """
-    Abstract class Shape
-    """
+    """Abstract class Shape"""
     @abstractmethod
     def area(self):
-        """
-        Abstract method area
-        """
+        """Abstract method area"""
         pass
 
     @abstractmethod
     def perimeter(self):
-        """
-        Abstract method perimeter
-        """
+        """Abstract method perimeter"""
         pass
 
 
 class Circle(Shape):
-    """
-    Class Circle
-    """
+    """Class Circle"""
     def __init__(self, radius):
-        """
-        Initializes Circle
-        """
-        self.radius = radius
+        """Initializes Circle"""
+        self.__radius = radius
 
     def area(self):
-        """
-        Calculates area
-        """
-        return math.pi * (self.radius ** 2)
+        """Calculates area"""
+        return math.pi * (self.__radius ** 2)
 
     def perimeter(self):
-        """
-        Calculates perimeter
-        """
-        return 2 * math.pi * self.radius
+        """Calculates perimeter"""
+        return 2 * math.pi * self.__radius
 
 
 class Rectangle(Shape):
-    """
-    Class Rectangle
-    """
+    """Class Rectangle"""
     def __init__(self, width, height):
-        """
-        Initializes Rectangle
-        """
-        self.width = width
-        self.height = height
+        """Initializes Rectangle"""
+        self.__width = width
+        self.__height = height
 
     def area(self):
-        """
-        Calculates area
-        """
-        return self.width * self.height
+        """Calculates area"""
+        return self.__width * self.__height
 
     def perimeter(self):
-        """
-        Calculates perimeter
-        """
-        return 2 * (self.width + self.height)
+        """Calculates perimeter"""
+        return 2 * (self.__width + self.__height)
 
 
 def shape_info(shape):
-    """
-    Prints area and perimeter
-    """
+    """Prints area and perimeter"""
     print("Area: {}".format(shape.area()))
     print("Perimeter: {}".format(shape.perimeter()))
