@@ -1,19 +1,16 @@
 #!/usr/bin/python3
-"""
-Bu modul obyektin tam olaraq müəyyən bir sinfə 
-aid olub-olmadığını yoxlayan funksiyanı ehtiva edir.
-"""
+"""Module for checking exact class instances."""
 
 
 def is_same_class(obj, a_class):
     """
-    Obyektin tam olaraq verilmiş sinfin nüsxəsi olub-olmadığını yoxlayır.
-    
+    Checks if an object is exactly an instance of a given class.
+
     Args:
-        obj: Yoxlanılacaq obyekt.
-        a_class: Müqayisə ediləcək sinif.
-        
+        obj: The object to check.
+        a_class: The class to compare with.
+
     Returns:
-        Tam uyğundursa True, əks halda False.
+        True if exactly an instance, otherwise False.
     """
     return type(obj) is a_class
