@@ -12,16 +12,17 @@ Test area():
 ...     print("[{}] {}".format(e.__class__.__name__, e))
 [Exception] area() is not implemented
 
+Test integer_validator with missing argument:
+>>> try:
+...     bg.integer_validator("age")
+... except Exception as e:
+...     print("[{}]".format(e.__class__.__name__))
+[TypeError]
+
 Test integer_validator with valid integers:
+>>> bg.integer_validator("age", 1)
 >>> bg.integer_validator("my_int", 12)
 >>> bg.integer_validator("width", 89)
-
-Test integer_validator with string:
->>> try:
-...     bg.integer_validator("name", "John")
-... except Exception as e:
-...     print("[{}] {}".format(e.__class__.__name__, e))
-[TypeError] name must be an integer
 
 Test integer_validator with 0:
 >>> try:
@@ -32,21 +33,49 @@ Test integer_validator with 0:
 
 Test integer_validator with negative integer:
 >>> try:
-...     bg.integer_validator("distance", -4)
+...     bg.integer_validator("age", -4)
 ... except Exception as e:
 ...     print("[{}] {}".format(e.__class__.__name__, e))
-[ValueError] distance must be greater than 0
+[ValueError] age must be greater than 0
 
-Test integer_validator with float:
+Test integer_validator with string:
 >>> try:
-...     bg.integer_validator("height", 1.5)
+...     bg.integer_validator("age", "4")
 ... except Exception as e:
 ...     print("[{}] {}".format(e.__class__.__name__, e))
-[TypeError] height must be an integer
+[TypeError] age must be an integer
 
-Test integer_validator with boolean (edge case):
+Test integer_validator with tuple:
 >>> try:
-...     bg.integer_validator("is_true", True)
+...     bg.integer_validator("age", (4,))
 ... except Exception as e:
 ...     print("[{}] {}".format(e.__class__.__name__, e))
-[TypeError] is_true must be an integer
+[TypeError] age must be an integer
+
+Test integer_validator with list:
+>>> try:
+...     bg.integer_validator("age", [3])
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[TypeError] age must be an integer
+
+Test integer_validator with boolean:
+>>> try:
+...     bg.integer_validator("age", True)
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[TypeError] age must be an integer
+
+Test integer_validator with set:
+>>> try:
+...     bg.integer_validator("age", {3, 4})
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[TypeError] age must be an integer
+
+Test integer_validator with None:
+>>> try:
+...     bg.integer_validator("age", None)
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[TypeError] age must be an integer
